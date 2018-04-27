@@ -16,4 +16,6 @@ RUN apt-get update && apt-get install -y unzip zip libaio-dev && unzip -o /tmp/i
      && echo 'export ORACLE_HOME="/usr/local/instantclient"' >> /root/.bashrc \
      && echo 'umask 002' >> /root/.bashrc \
      && docker-php-ext-configure oci8 -with-oci8=instantclient,/usr/local/instantclient \
-     && docker-php-ext-install oci8 
+     && docker-php-ext-install oci8 \
+     && docker-php-ext-configure pdo_oci --with-pdo-oci=instantclient,/usr/local/instantclient,11.2.0.4.0  \
+     && docker-php-ext-install pdo_oci
